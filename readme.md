@@ -1,8 +1,8 @@
-    # 🎓 TeacherFlow
+# 🎓 TeacherFlow
 
 > **Assistente Digital para Professores** - Planejamento, organização e acompanhamento educacional simplificados.
 
-[![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)](https://github.com/seu-usuario/teacherflow)
+[![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)](https://github.com/montmarcos/teacherflow)
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Flask](https://img.shields.io/badge/flask-3.0-green.svg)](https://flask.palletsprojects.com/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -44,17 +44,13 @@ TeacherFlow permite que professores organizem suas turmas, reutilizem materiais,
 - **Migrations:** Flask
 
 ### Frontend
--**HTML** - TPL
+- **Template Engine:** - HTM)
 - **CSS Framework:** 
-- **JavaScript:** 
+- **JavaScript:**
 
 ### Banco de Dados
 - **Desenvolvimento:** SQLite
 - **Produção:** PostgreSQL
-
-### Outros
-- **PDF Generation:** ReportLab
-- **Deploy:** Railway / Render / Heroku
 
 ---
 
@@ -63,7 +59,8 @@ TeacherFlow permite que professores organizem suas turmas, reutilizem materiais,
 ```
 teacherflow/
 ├── app/
-│   ├── __init__.py          # Factory da aplicação
+│   ├── controller/          # Controllers/Lógica de negócio
+│   ├── db/                  # Configuração e conexão do banco
 │   ├── models/              # Modelos de dados (ORM)
 │   │   ├── user.py
 │   │   ├── turma.py
@@ -73,7 +70,7 @@ teacherflow/
 │   │   ├── presenca.py
 │   │   ├── avaliacao.py
 │   │   └── anotacao.py
-│   ├── routes/              # Rotas/Controllers (Blueprints)
+│   ├── routes/              # Rotas/Blueprints
 │   │   ├── auth.py
 │   │   ├── dashboard.py
 │   │   ├── turmas.py
@@ -81,16 +78,43 @@ teacherflow/
 │   │   ├── planos.py
 │   │   ├── presenca.py
 │   │   └── notas.py
-│   ├── forms/               # Formulários (WTForms)
-│   ├── templates/           # Templates HTML (Jinja2)
 │   ├── static/              # CSS, JS, imagens
-│   └── utils/               # Utilitários e helpers
-├── migrations/              # Migrações do banco
-├── tests/                   # Testes automatizados
-├── config.py                # Configurações
-├── requirements.txt         # Dependências
-└── run.py                   # Ponto de entrada
+│   ├── utils/               # Utilitários e helpers
+│   └── views/               # Templates HTML (Jinja2)
+├── .gitattributes           # Atributos do Git
+├── readme.md                # Este arquivo
+└── (arquivos futuros)       # config.py, requirements.txt, run.py
 ```
+
+**Nota:** Estrutura atual do projeto em construção. Alguns diretórios e arquivos serão adicionados conforme o desenvolvimento avança.
+
+---
+
+## 🎯 Funcionalidades Principais (MVP)
+
+### ✅ Essenciais
+
+**Autenticação & Dashboard**
+- Sistema completo de login/cadastro
+- Dashboard com visão geral de turmas e pendências
+
+**Gestão Acadêmica**
+- CRUD de turmas e alunos
+- Banco de atividades com busca inteligente
+- Planos de aula rápidos (2 minutos)
+- Registro ágil de presença
+- Sistema de avaliações e notas
+- Anotações sobre alunos
+
+### 🎁 Extras Planejados
+
+- Gerador de PDF para listas de exercícios
+- Relatórios automáticos de frequência e desempenho
+- Calendário de aulas integrado
+
+> Para detalhes completos das funcionalidades, consulte o [documento do MVP](docs/OO_bmvc.pdf)
+
+---
 
 ## 🚦 Como Executar (Em Breve)
 
@@ -104,7 +128,7 @@ teacherflow/
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/teacherflow.git
+git clone https://github.com/montmarcos/teacherflow.git
 cd teacherflow
 
 # Crie um ambiente virtual
@@ -170,7 +194,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 Para dúvidas, sugestões ou feedback:
 
-- **Email:** marcos.mont.dev@gmail.com    
+- **Email:** marcos.mont.dev@gmail.com
 
 ---
 
