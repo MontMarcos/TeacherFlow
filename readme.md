@@ -1,8 +1,8 @@
-    # 🎓 TeacherFlow
+# 🎓 TeacherFlow
 
 > **Assistente Digital para Professores** - Planejamento, organização e acompanhamento educacional simplificados.
 
-[![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)](https://github.com/seu-usuario/teacherflow)
+[![Status](https://img.shields.io/badge/status-em%20desenvolvimento-yellow)](https://github.com/montmarcos/teacherflow)
 [![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Flask](https://img.shields.io/badge/flask-3.0-green.svg)](https://flask.palletsprojects.com/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -35,42 +35,22 @@ TeacherFlow permite que professores organizem suas turmas, reutilizem materiais,
 
 ---
 
-## 🚀 Status do Projeto
-
-⚠️ **Projeto em desenvolvimento ativo** - MVP planejado para conclusão em 6 semanas.
-
-### Roadmap
-
-- [x] Planejamento e documentação completa
-- [ ] **Semana 1-2:** Setup inicial + Autenticação + Models base
-- [ ] **Semana 3:** Gestão de Turmas e Alunos
-- [ ] **Semana 4:** Banco de Atividades + Busca
-- [ ] **Semana 5:** Planos de Aula + Sistema de Presença
-- [ ] **Semana 6:** Sistema de Notas + Relatórios + Polimento
-
----
-
 ## 🛠️ Stack Tecnológica
 
 ### Backend
 - **Framework:** Flask 3.0
-- **ORM:** Flask-SQLAlchemy
-- **Autenticação:** Flask-Login
-- **Formulários:** Flask-WTF
-- **Migrations:** Flask-Migrate
+- **Autenticação:** Flask
+- **Formulários:** Flask
+- **Migrations:** Flask
 
 ### Frontend
-- **Template Engine:** Jinja2
-- **CSS Framework:** TailwindCSS (via CDN)
-- **JavaScript:** Alpine.js
+- **Template Engine:** - HTM)
+- **CSS Framework:** 
+- **JavaScript:**
 
 ### Banco de Dados
 - **Desenvolvimento:** SQLite
 - **Produção:** PostgreSQL
-
-### Outros
-- **PDF Generation:** ReportLab
-- **Deploy:** Railway / Render / Heroku
 
 ---
 
@@ -79,7 +59,8 @@ TeacherFlow permite que professores organizem suas turmas, reutilizem materiais,
 ```
 teacherflow/
 ├── app/
-│   ├── __init__.py          # Factory da aplicação
+│   ├── controller/          # Controllers/Lógica de negócio
+│   ├── db/                  # Configuração e conexão do banco
 │   ├── models/              # Modelos de dados (ORM)
 │   │   ├── user.py
 │   │   ├── turma.py
@@ -89,7 +70,7 @@ teacherflow/
 │   │   ├── presenca.py
 │   │   ├── avaliacao.py
 │   │   └── anotacao.py
-│   ├── routes/              # Rotas/Controllers (Blueprints)
+│   ├── routes/              # Rotas/Blueprints
 │   │   ├── auth.py
 │   │   ├── dashboard.py
 │   │   ├── turmas.py
@@ -97,77 +78,41 @@ teacherflow/
 │   │   ├── planos.py
 │   │   ├── presenca.py
 │   │   └── notas.py
-│   ├── forms/               # Formulários (WTForms)
-│   ├── templates/           # Templates HTML (Jinja2)
 │   ├── static/              # CSS, JS, imagens
-│   └── utils/               # Utilitários e helpers
-├── migrations/              # Migrações do banco
-├── tests/                   # Testes automatizados
-├── config.py                # Configurações
-├── requirements.txt         # Dependências
-└── run.py                   # Ponto de entrada
+│   ├── utils/               # Utilitários e helpers
+│   └── views/               # Templates HTML (Jinja2)
+├── .gitattributes           # Atributos do Git
+├── readme.md                # Este arquivo
+└── (arquivos futuros)       # config.py, requirements.txt, run.py
 ```
+
+**Nota:** Estrutura atual do projeto em construção. Alguns diretórios e arquivos serão adicionados conforme o desenvolvimento avança.
 
 ---
 
 ## 🎯 Funcionalidades Principais (MVP)
 
-### ✅ MUST HAVE - Essenciais
+### ✅ Essenciais
 
-1. **Dashboard do Professor**
-   - Visão geral de turmas e pendências
-   - Ações rápidas para tarefas comuns
+**Autenticação & Dashboard**
+- Sistema completo de login/cadastro
+- Dashboard com visão geral de turmas e pendências
 
-2. **Autenticação Completa**
-   - Login/Signup seguro
-   - Proteção de rotas
-   - Gerenciamento de sessão
+**Gestão Acadêmica**
+- CRUD de turmas e alunos
+- Banco de atividades com busca inteligente
+- Planos de aula rápidos (2 minutos)
+- Registro ágil de presença
+- Sistema de avaliações e notas
+- Anotações sobre alunos
 
-3. **Gestão de Turmas**
-   - CRUD completo de turmas
-   - Gerenciamento de alunos
-   - Histórico individual dos alunos
+### 🎁 Extras Planejados
 
-4. **Banco de Atividades**
-   - Criação e organização de atividades
-   - Busca por texto e filtros combinados
-   - Sistema de tags
-   - Reutilização de conteúdo
+- Gerador de PDF para listas de exercícios
+- Relatórios automáticos de frequência e desempenho
+- Calendário de aulas integrado
 
-5. **Planos de Aula**
-   - Criação rápida (2 minutos)
-   - Vinculação com atividades do banco
-   - Histórico de aulas
-
-6. **Registro de Presença**
-   - Interface ágil de marcação
-   - Relatórios de frequência
-   - Alertas de faltas excessivas
-
-7. **Sistema de Avaliações**
-   - Criação de avaliações
-   - Lançamento de notas
-   - Estatísticas automáticas
-   - Exportação de boletins
-
-8. **Anotações sobre Alunos**
-   - Registro de observações
-   - Categorização (comportamento, aprendizado)
-   - Preparação para reuniões de pais
-
-### 🎁 SHOULD HAVE - Valor Adicional
-
-9. **Gerador de PDF**
-   - Listas de exercícios formatadas
-   - Inclusão de gabarito
-
-10. **Relatórios Automáticos**
-    - Frequência e desempenho
-    - Comparativos entre turmas
-
-11. **Calendário de Aulas**
-    - Visão mensal de planejamento
-    - Sincronização com planos
+> Para detalhes completos das funcionalidades, consulte o [documento do MVP](docs/OO_bmvc.pdf)
 
 ---
 
@@ -183,7 +128,7 @@ teacherflow/
 
 ```bash
 # Clone o repositório
-git clone https://github.com/seu-usuario/teacherflow.git
+git clone https://github.com/montmarcos/teacherflow.git
 cd teacherflow
 
 # Crie um ambiente virtual
@@ -209,60 +154,7 @@ flask db upgrade
 python run.py
 ```
 
-A aplicação estará disponível em `http://localhost:5000`
-
----
-
-## 🧪 Testes
-
-```bash
-# Execute os testes
-pytest
-
-# Com cobertura
-pytest --cov=app tests/
-
-# Testes específicos
-pytest tests/test_auth.py
-```
-
----
-
-## 📊 Modelo de Dados
-
-### Entidades Principais
-
-- **User (Professor):** Informações do professor
-- **Turma:** Turmas lecionadas
-- **Aluno:** Alunos de cada turma
-- **Atividade:** Banco de questões e materiais
-- **PlanoAula:** Planejamento de aulas
-- **RegistroPresenca:** Controle de frequência
-- **Avaliacao:** Provas e trabalhos
-- **NotaAluno:** Notas dos alunos
-- **AnotacaoAluno:** Observações sobre alunos
-
-### Relacionamentos
-
-```
-User (1) -----> (N) Turma
-Turma (1) ----> (N) Aluno
-User (1) -----> (N) Atividade
-Turma (1) ----> (N) PlanoAula
-PlanoAula (N) <---> (N) Atividade (Many-to-Many)
-Aluno (1) ----> (N) RegistroPresenca
-Turma (1) ----> (N) Avaliacao
-Avaliacao (1) -> (N) NotaAluno
-Aluno (1) ----> (N) AnotacaoAluno
-```
-
----
-
-## 📖 Documentação
-
-- **[Documento Completo do MVP](docs/OO_bmvc.pdf)** - Planejamento detalhado
-- **[Guia de Contribuição](CONTRIBUTING.md)** *(em breve)*
-- **[Changelog](CHANGELOG.md)** *(em breve)*
+A aplicação estará disponível em `http://localhost:8080`
 
 ---
 
@@ -294,18 +186,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ## 👥 Autores
 
-- **Seu Nome** - *Desenvolvimento Inicial* - [@seu-usuario](https://github.com/seu-usuario)
-
----
-
-## 🎯 Métricas de Sucesso do MVP
-
-- ✅ 10 professores ativos (usando 2x por semana)
-- ✅ Cada professor com pelo menos 2 turmas cadastradas
-- ✅ Pelo menos 10 atividades no banco por professor
-- ✅ 50+ planos de aula criados
-- ✅ 100+ registros de presença
-- ✅ Feedback qualitativo: "Economizou meu tempo?"
+- **MontMarcos** - *Desenvolvimento Inicial* - [@montmarcos](https://github.com/montmarcos)
 
 ---
 
@@ -313,17 +194,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 Para dúvidas, sugestões ou feedback:
 
-- **Email:** seu.email@exemplo.com
-- **LinkedIn:** [Seu Nome](https://linkedin.com/in/seu-perfil)
-- **Twitter:** [@seu_usuario](https://twitter.com/seu_usuario)
-
----
-
-## 🙏 Agradecimentos
-
-- Professores que inspiraram este projeto
-- Comunidade Flask
-- Todos os educadores que dedicam suas vidas ao ensino
+- **Email:** marcos.mont.dev@gmail.com
 
 ---
 
