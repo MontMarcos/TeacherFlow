@@ -1,0 +1,67 @@
+/*
+  Arquivo: ../static/css/style.css
+*/
+
+/* --- Reset Básico e Estilo do Corpo --- */
+body {
+    /* Define uma fonte limpa para toda a página */
+    font-family: Arial, sans-serif;
+    /* Remove a margem padrão do navegador */
+    margin: 0;
+    /* Define o espaçamento interno */
+    padding: 20px;
+    /* Cor de fundo suave */
+    background-color: #f4f4f9;
+    /* Centraliza o conteúdo (opcional, dependendo do design final) */
+    text-align: center;
+    color: #333; /* Cor do texto principal */
+}
+
+/* --- Estilo do Cabeçalho (h2) --- */
+h2 {
+    /* Cor principal para o título */
+    color: #4a90e2; 
+    /* Sublinha o título para destaque */
+    border-bottom: 2px solid #4a90e2;
+    /* Adiciona um pouco de espaço abaixo do sublinhado */
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+/* --- Estilo dos Parágrafos (p) --- */
+p {
+    /* Ajusta o espaçamento entre linhas */
+    line-height: 1.6;
+    /* Margem para separar os parágrafos */
+    margin-bottom: 15px;
+}
+
+/* --- Estilo do Botão (#botao) --- */
+#botao {
+    /* Cor de fundo chamativa */
+    background-color: #5cb85c; 
+    /* Cor do texto do botão */
+    color: white; 
+    /* Remove a borda padrão */
+    border: none;
+    /* Arredonda os cantos */
+    border-radius: 5px;
+    /* Espaçamento interno (top/bottom, left/right) */
+    padding: 10px 20px;
+    /* Muda o cursor para indicar que é clicável */
+    cursor: pointer;
+    /* Adiciona uma sombra suave */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Margem superior para separar do texto */
+    margin-top: 20px;
+    /* Garante que o texto dentro do botão seja em negrito */
+    font-weight: bold;
+}
+
+/* --- Efeito de Hover (passar o mouse) no Botão --- */
+#botao:hover {
+    /* Escurece a cor de fundo ao passar o mouse */
+    background-color: #4cae4c; 
+    /* Adiciona uma pequena transição suave */
+    transition: background-color 0.3s ease;
+}

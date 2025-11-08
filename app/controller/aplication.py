@@ -11,4 +11,5 @@ class Aplication:
         return content_function()
     
     def render_principal(self):
-        return render_template('principal.html')
+        return render_template('inicio.html')
+
