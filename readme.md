@@ -183,13 +183,6 @@ Contribuições são bem-vindas! Este projeto está em fase inicial de desenvolv
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
-
-## 👥 Autores
-
-- **MontMarcos** - *Desenvolvimento Inicial* - [@montmarcos](https://github.com/montmarcos)
-
----
-
 ## 📧 Contato
 
 Para dúvidas, sugestões ou feedback:
