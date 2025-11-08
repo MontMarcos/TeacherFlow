@@ -38,14 +38,12 @@ TeacherFlow permite que professores organizem suas turmas, reutilizem materiais,
 ## 🛠️ Stack Tecnológica
 
 ### Backend
+- **Linguagem:** Python
 - **Framework:** Flask 3.0
-- **Autenticação:** Flask
-- **Formulários:** Flask
-- **Migrations:** Flask
 
 ### Frontend
-- **Template Engine:** - HTM)
-- **CSS Framework:** 
+- **Template Engine:** - HTML
+- **CSS** 
 - **JavaScript:**
 
 ### Banco de Dados
@@ -70,17 +68,10 @@ teacherflow/
 │   │   ├── presenca.py
 │   │   ├── avaliacao.py
 │   │   └── anotacao.py
-│   ├── routes/              # Rotas/Blueprints
-│   │   ├── auth.py
-│   │   ├── dashboard.py
-│   │   ├── turmas.py
-│   │   ├── atividades.py
-│   │   ├── planos.py
-│   │   ├── presenca.py
-│   │   └── notas.py
 │   ├── static/              # CSS, JS, imagens
 │   ├── utils/               # Utilitários e helpers
 │   └── views/               # Templates HTML (Jinja2)
+│   └── run.py               # Rotas
 ├── .gitattributes           # Atributos do Git
 ├── readme.md                # Este arquivo
 └── (arquivos futuros)       # config.py, requirements.txt, run.py
