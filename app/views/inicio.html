@@ -5,39 +5,102 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TeacherFlow</title>
     
-    <!-- Link com o CSS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
     <link rel="stylesheet" href="../static/css/style.css">
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+    </style>
 </head>
 
 <body>
-    <header>
+    
+    <header class="main-header">
         <nav class="navbar">
             <div class="logo"> <h1>TeacherFlow</h1></div>
-            <ul class="nav-links">
-                <li><a href="#">Início</a></li>
-                <li><a href="#">Planejamento</a></li>
-                    <li><a href="#">Plano de Aula</a></li>
-                    <li><a href="#">Banco de Atividades</a></li>
-                <li><a href="#">Gestão</a></li>
-                    <li><a href="#"> Sistema de aulas</a></li>
-                    <li><a href="#">Registro ágil</a></li>
-                <li><a href="#">Sobre</a></li>
-                <li><a href="#">Dúvidas</a></li>
-            </ul>
         </nav>
+    </header>
 
-        <div class="header-content">
-            <p>Olá, professor(a) Henrique</p>
+    
+    <main class="main-content">
+        <div class="main-layout"> 
+            
+            <aside class="sidebar">
+                <div class="sidebar-logo-container">
+                    <img src="b:\TeacherFlow\Logo.png.ppn" class="sidebar-logo-img">
+                </div>
+                <nav class="sidebar-nav">
+                    <div class="nav-group-top"> 
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-home"></i> 
+                            <span>Início</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-book"></i> 
+                            <span>Planejamento</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-user-check"></i> 
+                            <span>Gestão</span>
+                        </a>
+                    </div>
 
-        <aside>
-            <p>O que deseja fazer hoje?</p>
-            <div>
-                <button class="action-button" onclick="location.href='#'">Planejamento</button>
-                <button class="action-button" onclick="location.href='#'">Gestão</button>
+                    <div class="nav-group-bottom"> 
+                        <hr class="sidebar-divider">
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-question-circle"></i> 
+                            <span>Dúvida</span>
+                        </a>
+                        <a href="#" class="nav-item">
+                            <i class="fas fa-cog"></i> 
+                            <span>Configurações</span>
+                        </a>
+                        <a href="#" class="nav-item logout">
+                            <i class="fas fa-sign-out-alt"></i> 
+                            <span>Sair</span>
+                        </a>
+                    </div>
+                </nav>
+            </aside>
+            
+            <div class="content-wrapper">
+                <div class="welcome-container">
+                    <p class="greeting">Olá, Professor Henrique!</p>
+                </div>
+
+                <div class="info-cards-group">
+                    <div class="info-card active-classes">
+                        <h3>Turmas Ativas</h3>
+                        <p class="data-value">5</p>
+                    </div>
+                    <div class="info-card pending-grades">
+                        <h3>Pendência de Notas</h3>
+                        <p class="data-value">2</p>
+                    </div>
+                    <div class="info-card next-class">
+                        <h3>Próxima Aula</h3>
+                        <p class="data-value">12h - Orientação a Objetos</p>
+                    </div>
+                </div>
+                <aside class="action-aside">
+                    <h2>O que deseja fazer?</h2>
+                    <div class="action-buttons-group">
+                        <button class="action-button planning" onclick="location.href='#'">
+                            <i class="fas fa-book"></i> Planejamento
+                            <span>Planos de Aula, Atividades, Materiais</span>
+                        </button>
+                        <button class="action-button management" onclick="location.href='#'">
+                            <i class="fas fa-user-check"></i> Gestão
+                            <span>Registro Ágil, Notas, Relatórios</span>
+                        </button>
+                    </div>
+                </aside>
             </div>
-        </aside>
+            
+        </div>
+    </main>
 
-    <!-- Link com o Javascript-->
     <script src="../static/js/inicio.js"></script>
 </body>
 </html>
