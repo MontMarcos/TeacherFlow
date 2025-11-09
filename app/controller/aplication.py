@@ -3,8 +3,8 @@ from flask import render_template
 class Aplication:
     def __init__(self):
         self.pages = {
-            'principal': self.render_principal,
-            'login': self.render_login
+            'login': self.render_login,
+            'principal': self.render_principal
         }
 
     def render(self, page):
