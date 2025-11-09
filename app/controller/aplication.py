@@ -4,6 +4,7 @@ class Aplication:
     def __init__(self):
         self.pages = {
             'principal': self.render_principal,
+            'login': self.render_login
         }
 
     def render(self, page):
@@ -12,4 +13,7 @@ class Aplication:
     
     def render_principal(self):
         return render_template('inicio.html')
+    
+    def render_login(self):
+        return render_template('login.html')
 
