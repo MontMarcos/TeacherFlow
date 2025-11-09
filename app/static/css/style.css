@@ -21,13 +21,19 @@ body {
 
 /* --- 1. Header (Fixo e sobreposto) --- */
 .main-header {
-    background-color: #000000;
+    color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;     
+      height: 100vh;           
+      margin: 0;      position: fixed;
+    background: #16267d;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: fixed; 
     width: 100%;
     top: 0;
     left: 0;
     z-index: 1000;
+    height: var(--header-height);
 }
 
 .navbar {
@@ -45,17 +51,14 @@ body {
     text-align: center;
 }
 
-.nav-links, .nav-links li, .nav-links a, .nav-links a i {
-    display: none; 
-}
-
 /* --- 2. Layout Principal (Ajustes de espaçamento) --- */
 .main-content {
-    padding-top: var(--header-height);
+    padding-top: var(--header-height); 
     padding-left: var(--sidebar-width); 
     max-width: 1800px; 
     margin: 0 auto;
     padding-right: 20px; 
+    min-height: calc(100vh - var(--header-height));
 }
 
 .main-layout {
@@ -64,6 +67,7 @@ body {
 
 .content-wrapper {
     width: 100%;
+    padding-top: 20px;
 }
 
 /* --- Sidebar (Fixo e Navegação) --- */
@@ -71,23 +75,21 @@ body {
     position: fixed; 
     top: 0;
     left: 0;
-    bottom: 0;
+    height: 100vh; 
     z-index: 1001;
     width: var(--sidebar-width); 
-    background-color: #0625d3; 
-    padding: 0;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    overflow-y: hidden; /* Garantindo que não haja scroll */
+    background: #16267d;    padding: 0;
+    overflow-y: hidden; 
 }
 
-/* Estilo para a Logo no Topo */
-.sidebar-logo-container {
+/* 🎯 AJUSTE DE CLASSE: Usando .sidebar-nav-logo (novo container do HTML) */
+.sidebar-nav-logo {
     height: var(--header-height);
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 5, 36, 1) 100%;
 }
 
 .sidebar-logo-img {
@@ -95,16 +97,17 @@ body {
     max-height: 80%;
     width: auto;
     height: auto;
+    /* AJUSTE CHAVE DE CENTRALIZAÇÃO */
+    display: block; 
+    margin: 0 auto;
 }
 
 .sidebar-nav {
     display: flex;
     flex-direction: column;
-    height: 100%; 
+    height: calc(100vh - var(--header-height)); 
     width: 100%;
-    /* Removendo paddings extras */
-    padding-top: 0; 
-    padding-bottom: 0; 
+    padding-top: 10px; 
 }
 
 /* Novos Grupos para Separar Links */
@@ -112,17 +115,16 @@ body {
     margin-bottom: 5px; 
 }
 
-/* CORREÇÃO CHAVE: Força a ancoragem no fundo sem padding extra */
-.nav-group-bottom {
-    margin-top: auto; 
-    padding-bottom: 0; 
+/* CORREÇÃO CHAVE: Força a ancoragem no fundo */
+.nav-group-bottom-2 {
+    margin-top: auto;
+    padding-bottom: 10px;
 }
 
 .sidebar-nav .nav-item {
     text-decoration: none;
     color: #fff;
-    /* ESPAÇAMENTO OTIMIZADO */
-    padding: 8px 20px;
+    padding: 15px 0;
     margin-bottom: 2px; 
     display: flex;
     flex-direction: column; 
@@ -133,24 +135,41 @@ body {
 }
 
 .sidebar-nav .nav-item i {
-    font-size: 20px; 
+    font-size: 24px; 
     margin-right: 0; 
-    margin-bottom: 1px; 
+    margin-bottom: 5px; 
+    padding-bottom: 0; 
 }
 
-.sidebar-nav .nav-item:hover {
+/* Estilo para os ícones do grupo inferior */
+.sidebar-nav .nav-item-2 {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 0; 
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar-nav .nav-item-2 i {
+    font-size: 22px; 
+    padding-bottom: 0;
+    color: #fff;
+    text-align: center;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.sidebar-nav .nav-item:hover, .sidebar-nav .nav-item-2:hover {
     background-color: rgba(255, 255, 255, 0.2);
 }
 
-.sidebar-nav .nav-item.logout {
-    color: #ff9999; 
+.sidebar-nav .logout:hover i {
+    color: #ff9999;
 }
 
-.sidebar-nav .nav-item.logout:hover {
-    background-color: rgba(255, 153, 153, 0.1);
-}
-
-.sidebar-divider {
+.sidebar-divider-2 {
     border: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     margin: 10px; 
@@ -160,19 +179,14 @@ body {
 .welcome-container {
     padding-bottom: 20px;
     margin-bottom: 25px;
-    border-bottom: 1px solid #0625d3;
+    border-bottom: 1px solid    #e0e0e0;
 }
 
 .greeting {
-    font-size: 28px;
-    font-family: 'Impact', fantasy;
+    font-size: 30px;
+    font-family: 'Roboto', sans-serif;
     font-style: italic;
     font-weight: 300;
-    color: #000000;
-}
-
-.greeting strong {
-    font-weight: 700; 
     color: #000000;
 }
 
@@ -202,7 +216,7 @@ body {
 
 .info-card h3 {
     font-size: 16px;
-    color: #0625d3;
+    color: rgba(22, 38, 125, 1);
     margin-bottom: 10px;
     font-weight: 700;
     text-transform: uppercase;
@@ -215,15 +229,15 @@ body {
 }
 
 .info-card.active-classes {
-    border-left: 5px solid #304efa;
+    border-left: 5px solid  rgba(22, 38, 125, 1);
 }
 
 .info-card.pending-grades {
-    border-left: 5px solid #304efa;
+    border-left: 5px solid  rgba(22, 38, 125, 1);
 }
 
 .info-card.next-class {
-    border-left: 5px solid #304efa;
+    border-left: 5px solid  rgba(22, 38, 125, 1);
 }
 
 
@@ -234,8 +248,8 @@ body {
 }
 
 .action-aside h2 {
-    font-size: 55px;
-    margin-bottom: 65px; 
+    font-size: 40px;
+    margin-bottom: 40px; 
     color: #000000;
 }
 
@@ -243,6 +257,7 @@ body {
     display: flex;
     justify-content: center;
     gap: 30px;
+    padding-bottom: 50px;
 }
 
 .action-button {
@@ -257,7 +272,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    font-size: 30px;
+    font-size: 24px;
     font-weight: 700;
 }
 
@@ -276,12 +291,87 @@ body {
     font-weight: 400;
     opacity: 0.8;
     margin-top: 10px;
+    line-height: 1.5;
 }
 
 .action-button.planning {
-    background-color: #0625d3; 
+    background-color:  rgba(22, 38, 125, 1); 
 }
 
 .action-button.management {
-    background-color: #0625d3; 
+    background-color:  rgba(22, 38, 125, 1); 
+}
+
+/* --- 4. Estilo Quadro de Avisos (Quadro Branco) --- */
+
+article {
+    background-color: #ffffff; /* Fundo branco principal */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05); /* Sombra suave para destacar */
+    margin-top: 40px;
+}
+
+article h2 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #eeeeee; /* Linha sutil para separar o título */
+}
+
+/* Container que organiza os cards */
+.recent-activities {
+    display: flex;
+    flex-direction: column; /* Lista vertical, como no seu modelo */
+    gap: 15px; /* Espaço entre cada aviso */
+}
+
+/* Estilo de cada aviso/cartão */
+.activity-card {
+    background-color: #fcfcfc; /* Um branco levemente diferente para o card */
+    border: 1px solid #e0e0e0; /* Borda fina e clara, estilo papel */
+    border-left: 5px solid #0625d3; /* Borda lateral azul para dar destaque/cor */
+    padding: 15px 20px;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.activity-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.activity-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #0625d3; /* Título em azul para visibilidade */
+    margin-bottom: 5px;
+}
+
+.activity-card p {
+    font-size: 14px;
+    color: #555555;
+    line-height: 1.5;
+    margin-top: 2px;
+}
+
+/* Destaque para os status */
+.activity-card p:last-child {
+    font-weight: 500;
+}
+
+/* Estilos de cor para os diferentes status (opcional, mas altamente recomendado) */
+.activity-card:nth-child(1) {
+    /* Aula de Matemática - Concluída */
+    border-left-color: #4CAF50; /* Verde */
+}
+.activity-card:nth-child(2) {
+    /* Entrega de Notas - Pendente */
+    border-left-color: #ff0000; /* Laranja */
+}
+.activity-card:nth-child(3) {
+    /* Planejamento de Ciências - Em Andamento */
+    border-left-color: #00bcd4; /* Ciano/Azul claro */
 }
