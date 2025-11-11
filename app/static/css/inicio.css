@@ -233,12 +233,12 @@ body {
 
 
 /* ---  Aside --- */
-.action-aside {
+.action-nav {
     text-align: center;
     padding: 50px 0; 
 }
 
-.action-aside h2 {
+.action-nav h2 {
     font-size: 40px;
     margin-bottom: 40px; 
     color: #000000;

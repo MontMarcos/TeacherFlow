@@ -5,7 +5,10 @@ class Aplication:
     def __init__(self):
         self.pages = {
             'login': self.handle_login,
-            'principal': self.render_principal
+            'principal': self.render_principal,
+            'planejamento': self.render_planejamento,
+            'gestao': self.render_gestao,
+            'ajuda': self.render_ajuda
         }
 
     def render(self, page):
@@ -19,6 +22,15 @@ class Aplication:
     
     def render_login(self, message=None):
         return render_template('login.html', message=message)
+    
+    def render_planejamento(self):
+        return render_template('planejamento.html')
+    
+    def render_gestao(self):
+        return render_template('gestao.html')
+    
+    def render_ajuda(self):
+        return render_template('ajuda.html')
 
     def handle_login(self):
         """Lida com requisições GET/POST no login."""
