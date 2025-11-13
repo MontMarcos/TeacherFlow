@@ -1,6 +1,16 @@
 
 class Aluno:
-    def __init__(self, nome: str, idade: int, matricula: str, sexo: str, data_nascimento: str, nacionalidade: str, necessidades_especiais: str, nome_mae: str, nome_pai: str, contato_responsavel: str, cpf: str):
+    def __init__(self, nome: str, 
+                 idade: int, 
+                 matricula: str, 
+                 sexo: str, 
+                 data_nascimento: str, 
+                 nacionalidade: str, 
+                 necessidades_especiais: str, 
+                 nome_mae: str, 
+                 nome_pai: str, 
+                 contato_responsavel: str, cpf: str):
+        
         self.nome = nome
         self.idade = idade
         self.matricula = matricula
