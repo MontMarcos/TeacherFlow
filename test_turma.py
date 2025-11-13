@@ -1,7 +1,9 @@
 from app.models.turma import Turma
 from app.models.aluno import Aluno
 
-def test_adicionar_e_listar_alunos():    
+def test_adicionar_e_listar_alunos():   
+    turma = Turma(nome="Matemática", codigo="MATH101")
+     
     aluno1 = Aluno(
         nome="Ana Souza",
         matricula="2023002",
@@ -32,7 +34,6 @@ def test_adicionar_e_listar_alunos():
     turma.adicionar_aluno(aluno2)
     
 if __name__ == "__main__":
-    test_adicionar_e_listar_alunos()
     turma = Turma(nome="Matemática", codigo="MATH101")
     print(f"Turma criada: {turma}")
     print("Alunos na turma:")
