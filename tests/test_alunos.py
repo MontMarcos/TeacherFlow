@@ -1,5 +1,6 @@
-from aluno import Aluno
+from app.models.aluno import Aluno
 
+# Teste para a classe Aluno
 def test_cpf_formatado():
     aluno = Aluno(
             nome = "João Silva",
@@ -12,8 +13,8 @@ def test_cpf_formatado():
             nome_mae = "Maria Silva",
             nome_pai = "Carlos Silva",
             contato_responsavel = "(11) 99999-9999",
-            cpf = "12345678989"
-    
+            cpf = "07487405117"
+    )
     return aluno
 
 if __name__ == "__main__":
