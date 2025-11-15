@@ -13,7 +13,7 @@ def test_cpf_formatado():
             nome_mae = "Maria Silva",
             nome_pai = "Carlos Silva",
             contato_responsavel = "(11) 99999-9999",
-            cpf = "07487405117"
+            cpf = "46536865364"
     )
     return aluno
 

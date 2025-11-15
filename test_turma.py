@@ -34,8 +34,5 @@ def test_adicionar_e_listar_alunos():
     turma.adicionar_aluno(aluno2)
     
 if __name__ == "__main__":
-    turma = Turma(nome="Matemática", codigo="MATH101")
-    print(f"Turma criada: {turma}")
-    print("Alunos na turma:")
-    for aluno in turma.listar_alunos():
-        print(aluno)
+    turma = test_adicionar_e_listar_alunos()
+    print(f"Turma: {turma}")
