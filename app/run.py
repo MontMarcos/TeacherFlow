@@ -40,8 +40,6 @@ def login():
             session['user_id'] = user.id
             
             return redirect(url_for("portal"))
-        else:
-            return "Usuário ou senha incorretos"
 
     return aplication.render("login")
 
