@@ -54,7 +54,7 @@ class Aplication:
             username = request.form.get('username')
             email = request.form.get('email')
             full_name = request.form.get('full_name')
-            password = request.form.get('password')
+            password = request.form.get('password_hash')
             existing_user = User.get_user_by_username(username)
             if existing_user:
                 return self.render_login(message="Username already exists.")

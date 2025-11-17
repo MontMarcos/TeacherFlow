@@ -1,19 +1,18 @@
 import sqlite3
+import os
 
-def gerar_conexao(db_path='app/db/database.db'):
-    """Gera uma conexão com o banco de dados SQLite."""
-    conexao = sqlite3.connect("teacher.db")
-    conexao.commit()
-    return conexao
+DB_PATH = "app/db/database.db"
+
+def gerar_conexao():
+    os.makedirs("app/db", exist_ok=True)
+    return sqlite3.connect(DB_PATH)
 
 def fechar_conexao(conexao):
-    """Fecha a conexão com o banco de dados SQLite."""
     if conexao:
         conexao.close()
 
-def inicializar_banco_de_dados(db_path='app/db/database.db'):
-    """Inicializa o banco de dados com a tabela de usuários."""
-    conexao = gerar_conexao(db_path)
+def inicializar_banco_de_dados():
+    conexao = gerar_conexao()
     cursor = conexao.cursor()
     cursor.execute('''
         CREATE TABLE IF NOT EXISTS users (
