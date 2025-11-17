@@ -5,17 +5,17 @@
     font-family: "Inter", sans-serif;
 }
 
-/* 🎆 FUNDO COM GRADIENTE ANIMADO */
 body {
     height: 100vh;
     width: 100vw;
 
     /* Gradiente inicial */
-    background: linear-gradient(-45deg, #1456ff, #182145, #2838ff, #141a2e);
+    background: linear-gradient(-45deg, #1456ff, #182145, #1b25ae, #141a2e);
     background-size: 400% 400%;
 
     /* Animação */
     animation: gradientAnimation 12s ease infinite;
+    
 
     display: flex;
     justify-content: center;

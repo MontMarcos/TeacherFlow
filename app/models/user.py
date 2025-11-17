@@ -69,6 +69,15 @@ class User:
         conexao.commit()
         fechar_conexao(conexao)
 
+    def edit_user(self, email=None, full_name=None, password=None):
+        if email:
+            self.email = email
+        if full_name:
+            self.full_name = full_name
+        if password:
+            self.password_hash = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
+        self.save()
+
     # DELETE
     @staticmethod
     def delete_user(user_id):

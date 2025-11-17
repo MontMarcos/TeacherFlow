@@ -1,33 +1,80 @@
 from .aluno import Aluno
+from ..db.database import gerar_conexao, fechar_conexao
 
 class Turma:
-    def __init__(self, nome: str, codigo: str):
+    def __init__(self, id, nome, descricao=None):
+        self.id = id
         self.nome = nome
-        self.codigo = codigo
-        self.alunos = []
+        self.descricao = descricao
+        self.alunos = []   # será carregado automaticamente
 
-    def adicionar_aluno(self, aluno: Aluno):
-        self.alunos.append(aluno)
+    # CREATE
+    @staticmethod
+    def create_turma(nome, descricao=None):
+        conexao = gerar_conexao()
+        cursor = conexao.cursor()
 
-    def listar_alunos(self):
-        return self.alunos
-    
-    def __repr__(self):
-        return f'<Turma {self.nome} (Código: {self.codigo})>'
-    
-    def contar_alunos(self):
-        return len(self.alunos)
-    
-    def buscar_aluno_por_matricula(self, matricula: str):
-        for aluno in self.alunos:
-            if aluno.matricula == matricula:
-                return aluno
-        return None 
-    
-    def remover_aluno_por_nome_ou_matricula(self, identificador: str):
-        for aluno in self.alunos:
-            if aluno.nome == identificador or aluno.matricula == identificador:
-                self.alunos.remove(aluno)
-                return True
-        return False
-    
+        cursor.execute("""
+            INSERT INTO turmas (nome, descricao)
+            VALUES (?, ?)
+        """, (nome, descricao))
+
+        conexao.commit()
+        fechar_conexao(conexao)
+
+    # READ (carrega turma + lista de alunos)
+    @staticmethod
+    def get_turma_by_id(turma_id):
+        conexao = gerar_conexao()
+        cursor = conexao.cursor()
+
+        cursor.execute("""
+            SELECT id, nome, descricao
+            FROM turmas
+            WHERE id = ?
+        """, (turma_id,))
+        row = cursor.fetchone()
+
+        if not row:
+            fechar_conexao(conexao)
+            return None
+
+        turma = Turma(*row)
+
+        # Agora carrega os alunos dessa turma
+        cursor.execute("""
+            SELECT id, nome, idade, turma
+            FROM alunos
+            WHERE turma = ?
+        """, (turma.id,))
+        aluno_rows = cursor.fetchall()
+
+        turma.alunos = [Aluno(*a) for a in aluno_rows]
+
+        fechar_conexao(conexao)
+        return turma
+
+    # UPDATE
+    def save(self):
+        conexao = gerar_conexao()
+        cursor = conexao.cursor()
+
+        cursor.execute("""
+            UPDATE turmas
+            SET nome = ?, descricao = ?
+            WHERE id = ?
+        """, (self.nome, self.descricao, self.id))
+
+        conexao.commit()
+        fechar_conexao(conexao)
+
+    # DELETE
+    @staticmethod
+    def delete_turma(turma_id):
+        conexao = gerar_conexao()
+        cursor = conexao.cursor()
+
+        cursor.execute("DELETE FROM turmas WHERE id = ?", (turma_id,))
+        conexao.commit()
+
+        fechar_conexao(conexao)
