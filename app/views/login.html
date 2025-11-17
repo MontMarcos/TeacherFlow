@@ -2,23 +2,67 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>TeacherFlow | Login</title>
-    <link rel="stylesheet" href="../static/css/login.css"> 
+    <title>Login / Cadastro</title>
+    <link rel="stylesheet" href="../static/css/login.css">
 </head>
 <body>
-    <h2>Login</h2>
 
-     <img src="../static/img/Logo.png.png" alt="">
-    <form action="{{ url_for('login') }}" method="post"> 
-        <label for="username">Nome:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        
-        <label for="password">Senha:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        
-        <input type="submit" value="Entrar">
-    </form>
-    
-    <script src="../static/js/login.js"></script>
+<div class="wrapper">
+
+    <!-- CARD LOGIN -->
+    <div class="card active" id="card-login">
+        <div class="header">
+            <h2>Bem-vindo</h2>
+            <p>Entre com sua conta para continuar</p>
+        </div>
+
+        <form action="/login" method="POST">
+            <label>Usuário</label>
+            <input type="text" name="username" required>
+
+            <label>Senha</label>
+            <input type="password" name="password" required>
+
+            <button class="btn" type="submit">Entrar</button>
+        </form>
+
+        <div class="switch">
+            Não tem conta?
+            <a id="swap-to-register">Cadastre-se</a>
+        </div>
+    </div>
+
+    <!-- CARD CADASTRO -->
+    <div class="card" id="card-register">
+        <div class="header">
+            <h2>Criar Conta</h2>
+            <p>Preencha para começar sua jornada</p>
+        </div>
+
+        <form action="/register" method="POST">
+            <label>Nome Completo</label>
+            <input type="text" name="full_name" required>
+
+            <label>Usuário</label>
+            <input type="text" name="username" required>
+
+            <label>Email</label>
+            <input type="email" name="email" required>
+
+            <label>Senha</label>
+            <input type="password" name="password" required>
+
+            <button class="btn" type="submit">Cadastrar</button>
+        </form>
+
+        <div class="switch">
+            Já tem conta?
+            <a id="swap-to-login">Entrar</a>
+        </div>
+    </div>
+
+</div>
+
+<script src="../static/js/login.js"></script>
 </body>
 </html>

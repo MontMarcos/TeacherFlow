@@ -1,42 +1,91 @@
-import json
-import os
+from app.db.database import gerar_conexao, fechar_conexao
+import bcrypt
 
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+class User:
+    def __init__(self, id, username, email, full_name, password_hash):
+        self.id = id
+        self.username = username
+        self.email = email
+        self.full_name = full_name
+        self.password_hash = password_hash
 
-APP_ROOT = os.path.dirname(BASE_DIR) 
-
-USERS_FILE = os.path.join(APP_ROOT, 'db', 'user.json') 
-
-class User:    
-    def __init__(self, user_data):
-        self.id = user_data.get('id')
-        self.name = user_data.get('name') 
-        self.password = user_data.get('password')
-
-    def __repr__(self):
-        return f'<User {self.name} (ID: {self.id})>'
-
+    # CREATE
     @staticmethod
-    def load_users():
-        with open(USERS_FILE, 'r') as f:
-            data = json.load(f)
-            if isinstance(data, list):
-                processed_users = []
-                for item in data:
-                    user_info = item.get('user', {}) 
-                    user_info['id'] = item.get('id')
-                    processed_users.append(user_info)
-                
-                return processed_users
+    def create_user(username, email, full_name, password):
+        conexao = gerar_conexao()
+        cursor = conexao.cursor()
+        password_hash = bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt())
 
+        cursor.execute("""
+            INSERT INTO users (username, email, full_name, password_hash)
+            VALUES (?, ?, ?, ?)
+        """, (username, email, full_name, password_hash))
+
+        conexao.commit()
+        fechar_conexao(conexao)
+
+    # READ
     @staticmethod
-    def get_by_name(name):
-        """Busca um usuário pelo nome. Retorna uma instância de User ou None."""
-        users_list = User.load_users()
-        for user_data in users_list:
-            if user_data.get('name') == name:
-                return User(user_data) 
+    def get_user_by_username(username):
+        conexao = gerar_conexao()
+        cursor = conexao.cursor()
+        cursor.execute("""
+            SELECT id, username, email, full_name, password_hash
+            FROM users WHERE username = ?
+        """, (username,))
+        row = cursor.fetchone()
+        fechar_conexao(conexao)
+
+        if row:
+            return User(*row)  # agora retorna id também
         return None
 
-    def check_password(self, password):
-        return str(self.password) == str(password)
+    @staticmethod
+    def get_user_by_id(user_id):
+        conexao = gerar_conexao()
+        cursor = conexao.cursor()
+        cursor.execute("""
+            SELECT id, username, email, full_name, password_hash
+            FROM users WHERE id = ?
+        """, (user_id,))
+        row = cursor.fetchone()
+        fechar_conexao(conexao)
+
+        if row:
+            return User(*row)
+        return None
+
+    # UPDATE
+    def save(self):
+        conexao = gerar_conexao()
+        cursor = conexao.cursor()
+
+        cursor.execute("""
+            UPDATE users
+            SET email = ?, full_name = ?, password_hash = ?
+            WHERE id = ?
+        """, (self.email, self.full_name, self.password_hash, self.id))
+
+        conexao.commit()
+        fechar_conexao(conexao)
+
+    # DELETE
+    @staticmethod
+    def delete_user(user_id):
+        conexao = gerar_conexao()
+        cursor = conexao.cursor()
+        cursor.execute("DELETE FROM users WHERE id = ?", (user_id,))
+        conexao.commit()
+        fechar_conexao(conexao)
+
+    # AUTH
+    def validate_password(self, password):
+        return bcrypt.checkpw(password.encode('utf-8'), self.password_hash)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "username": self.username,
+            "email": self.email,
+            "full_name": self.full_name
+        }

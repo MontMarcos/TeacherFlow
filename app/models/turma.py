@@ -1,4 +1,4 @@
-from aluno import Aluno
+from .aluno import Aluno
 
 class Turma:
     def __init__(self, nome: str, codigo: str):

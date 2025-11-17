@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, session
-from models.user import User 
+from app.models.user import User
 
 class Aplication:
     def __init__(self):
@@ -33,19 +33,31 @@ class Aplication:
         return render_template('ajuda.html')
 
     def handle_login(self):
-        """Lida com requisições GET/POST no login."""
-        
         if request.method == 'POST':
-            name = request.form.get('username')
+            username = request.form.get('username')
             password = request.form.get('password')
-            
-            user = User.get_by_name(name)
-            
-            if user and user.check_password(password):
+            user = User.get_user_by_username(username)
+            if user and user.validate_password(password):
                 session['logged_in'] = True
-                session['name'] = user.name
-                return redirect(url_for('principal')) 
+                session['name'] = user.full_name
+                return redirect(url_for('principal'))
             else:
-                return self.render_login(message="Nome ou senha incorretos.")
-        
+                return self.render_login(message="Invalid username or password.")
+        return self.render_login()
+    
+    def handle_logout(self):
+        session.clear()
+        return redirect(url_for('login'))
+    
+    def handle_registration(self):
+        if request.method == 'POST':
+            username = request.form.get('username')
+            email = request.form.get('email')
+            full_name = request.form.get('full_name')
+            password = request.form.get('password_hash')
+            existing_user = User.get_user_by_username(username)
+            if existing_user:
+                return self.render_login(message="Username already exists.")
+            User.create_user(username, email, full_name, password)
+            return redirect(url_for('login'))
         return self.render_login()

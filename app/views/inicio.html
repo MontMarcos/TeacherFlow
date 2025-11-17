@@ -1,118 +1,104 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TeacherFlow</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    
-    <link rel="stylesheet" href="../static/css/inicio.css">
-    <link rel="shortcut icon" href="../static/img/Logo.png.branco.png" type="image/x-icon">
-    
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TeacherFlow</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<link rel="stylesheet" href="../static/css/inicio.css">
+<link rel="shortcut icon" href="../static/img/Logo.png.branco.png" type="image/x-icon">
 
 </head>
 
 <body>
-    <main class="main-content">
-        <div class="main-layout"> 
-            <header class="main-header">
-                    <div> <h1>TeacherFlow</h1></div>
-            </header>
-            
-            <nav class="sidebar">
-                <div class="sidebar-nav-logo">
-                    <img src="../static/img/Logo.png.branco.png" class="sidebar-logo-img">
-                </div>
-                <nav class="sidebar-nav">
-                    <div class="nav-group-top"> 
-                        <a href="#" class="nav-item">
-                            <i class="fas fa-home"></i> 
-                            <span></span>
-                        </a>
-                        <a href="#" class="nav-item">
-                            <i class="fas fa-book"></i> 
-                            <span></span>
-                        </a>
-                        <a href="#" class="nav-item">
-                            <i class="fas fa-user-check"></i> 
-                            <span></span>
-                        </a>
-                    </div>
+<main class="main-content">
+    <div class="main-layout"> 
+        <header class="main-header">
+            <div><h1>TeacherFlow</h1></div>
+        </header>
 
-                    <div class="nav-group-bottom-2"> 
-                        <hr class="sidebar-divider-2">
-                        <a href="#" class="nav-item-2">
-                            <i class="fas fa-question-circle"></i> 
-                        </a>
-                        <a href="#" class="nav-item-2">
-                            <i class="fas fa-cog"></i> 
-                        </a>
-                        <a href="#" class="nav-item-2 logout">
-                            <i class="fas fa-sign-out-alt"></i> 
-                        </a>
-                    </div>
-                </nav>
+        <!-- Menu -->
+        <nav class="sidebar">
+            <div class="sidebar-nav-logo">
+                <img src="../static/img/Logo.png.branco.png" class="sidebar-logo-img">
+            </div>
+            <nav class="sidebar-nav">
+                <div class="nav-group-top"> 
+                    <a href="#" class="nav-item"><i class="fas fa-home"></i><span></span></a>
+                    <a href="#" class="nav-item"><i class="fas fa-book"></i><span></span></a>
+                    <a href="#" class="nav-item"><i class="fas fa-user-check"></i><span></span></a>
+                </div>
+
+                <div class="nav-group-bottom-2"> 
+                    <hr class="sidebar-divider-2">
+                    <a href="#" class="nav-item-2"><i class="fas fa-question-circle"></i></a>
+                    <a href="#" class="nav-item-2" onclick="openSettings()"><i class="fas fa-cog"></i></a>
+                    <a href="/logout" class="nav-item-2 logout"><i class="fas fa-sign-out-alt"></i></a>
+                </div>
             </nav>
-            
-            <div class="content-wrapper">
-                <div class="welcome-container">
-                    <p class="greeting">Olá, Professor Henrique!</p>
-                </div>
+        </nav>
 
-                <div class="info-cards-group">
-                    <div class="info-card active-classes">
-                        <h3>Turmas Ativas</h3>
-                        <p class="data-value">5</p>
-                    </div>
-                    <div class="info-card pending-grades">
-                        <h3>Pendência de Notas</h3>
-                        <p class="data-value">2</p>
-                    </div>
-                    <div class="info-card next-class">
-                        <h3>Próxima Aula</h3>
-                        <p class="data-value">12h - Orientação a Objetos</p>
-                    </div>
-                </div>
-                <aside class="action-aside">
-                    <h2>O que deseja fazer?</h2>
-                    <div class="action-buttons-group">
-                        <button class="action-button planning" onclick="location.href='#'">
-                            <i class="fas fa-book"></i> Planejamento
-                            <span>Planos de Aula, Atividades, Materiais</span>
-                        </button>
-                        <button class="action-button management" onclick="location.href='#'">
-                            <i class="fas fa-user-check"></i> Gestão
-                            <span>Registro Ágil, Notas, Relatórios</span>
-                        </button>
-                    </div>
-                </aside>
+        <div class="content-wrapper">
+            <div class="welcome-container">
+                <p class="greeting">Olá, Professor Henrique!</p>
+            </div>
+
+            <div class="info-cards-group">
+                <div class="info-card active-classes"><h3>Turmas Ativas</h3><p class="data-value">5</p></div>
+                <div class="info-card pending-grades"><h3>Pendência de Notas</h3><p class="data-value">2</p></div>
+                <div class="info-card next-class"><h3>Próxima Aula</h3><p class="data-value">12h - Orientação a Objetos</p></div>
             </div>
             
+            <!-- Botões para redirecionar para o planejamento e gestão -->
+            <aside class="action-aside">
+                <h2>O que deseja fazer?</h2>
+                <div class="action-buttons-group">
+                    <button class="action-button planning"><i class="fas fa-book"></i> Planejamento<span>Planos de Aula, Atividades, Materiais</span></button>
+                    <button class="action-button management"><i class="fas fa-user-check"></i> Gestão<span>Registro Ágil, Notas, Relatórios</span></button>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <!-- Menu de recados -->
+    <article>
+        <h2>Resumo das Atividades Recentes</h2>
+        <div class="recent-activities">
+            <div class="activity-card"><h3>Aula de Matemática</h3><p>Data: 10/09/2024</p><p>Status: Concluída</p></div>
+            <div class="activity-card"><h3>Entrega de Notas - História</h3><p>Data: 12/09/2024</p><p>Status: Pendente</p></div>
+            <div class="activity-card"><h3>Planejamento de Ciências</h3><p>Data: 15/09/2024</p><p>Status: Em Andamento</p></div>
+        </div>
+    </article>
+</main>
+
+<!-- Configurações -->
+<div id="settings-overlay" class="settings-overlay hidden">
+    <div class="settings-modal">
+        <div class="settings-header">
+            <h2>Configurações</h2>
+            <button class="close-settings" onclick="closeSettings()">×</button>
         </div>
 
-        <article>
-            <h2>Resumo das Atividades Recentes</h2>
-            <div class="recent-activities">
-                <div class="activity-card">
-                    <h3>Aula de Matemática</h3>
-                    <p>Data: 10/09/2024</p>
-                    <p>Status: Concluída</p>
-                </div>
-                <div class="activity-card">
-                    <h3>Entrega de Notas - História</h3>
-                    <p>Data: 12/09/2024</p>
-                    <p>Status: Pendente</p>
-                </div>
-                <div class="activity-card">
-                    <h3>Planejamento de Ciências</h3>
-                    <p>Data: 15/09/2024</p>
-                    <p>Status: Em Andamento</p>
-                </div>
-            </div>
-        </article>
-    </main>
+        <div class="settings-modal-content">
+            <aside class="settings-menu">
+                <ul>
+                    <li><a href="#" class="active">Dados pessoais</a></li>
+                    <li><a href="#">Conta</a></li>
+                    <li><a href="#">Perfil</a></li>
+                    <li><a href="#">Emails</a></li>
+                    <li><a href="#">Preferências</a></li>
+                </ul>
+            </aside>
 
-    <script src="../static/js/inicio.js"></script>
+            <section class="settings-content">
+                <h3>Abra uma opção</h3>
+                <p>Edite informações de conta, perfil e mais.</p>
+            </section>
+        </div>
+    </div>
+</div>
+
+<script src="../static/js/inicio.js"></script>
 </body>
 </html>
