@@ -33,19 +33,14 @@ class Aplication:
         return render_template('ajuda.html')
 
     def handle_login(self):
-        """Lida com requisições GET/POST no login."""
-        
         if request.method == 'POST':
-            name = request.form.get('username')
-            password = request.form.get('password')
-            
-            user = User.get_by_name(name)
-            
-            if user and user.check_password(password):
+            username = request.form['username']
+            password = request.form['password']
+            user = User.get_user_by_username(username)
+            if user and user.validate_password(password):
                 session['logged_in'] = True
-                session['name'] = user.name
-                return redirect(url_for('principal')) 
+                session['name'] = user.full_name
+                return redirect(url_for('principal'))
             else:
-                return self.render_login(message="Nome ou senha incorretos.")
-        
+                return self.render_login(message="Invalid credentials. Please try again.")
         return self.render_login()
