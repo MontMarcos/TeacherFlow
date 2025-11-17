@@ -1,4 +1,4 @@
-from controller.aplication import Aplication
+from app.controller.aplication import Aplication
 from flask import Flask, session, redirect, url_for 
 
 aplication = Aplication()

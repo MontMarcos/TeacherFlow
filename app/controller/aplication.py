@@ -1,5 +1,5 @@
 from flask import render_template, request, redirect, url_for, session
-from models.user import User 
+from app.models.user import User
 
 class Aplication:
     def __init__(self):
@@ -34,13 +34,30 @@ class Aplication:
 
     def handle_login(self):
         if request.method == 'POST':
-            username = request.form['username']
-            password = request.form['password']
+            username = request.form.get('username')
+            password = request.form.get('password')
             user = User.get_user_by_username(username)
             if user and user.validate_password(password):
                 session['logged_in'] = True
                 session['name'] = user.full_name
                 return redirect(url_for('principal'))
             else:
-                return self.render_login(message="Invalid credentials. Please try again.")
+                return self.render_login(message="Invalid username or password.")
+        return self.render_login()
+    
+    def handle_logout(self):
+        session.clear()
+        return redirect(url_for('login'))
+    
+    def handle_registration(self):
+        if request.method == 'POST':
+            username = request.form.get('username')
+            email = request.form.get('email')
+            full_name = request.form.get('full_name')
+            password = request.form.get('password')
+            existing_user = User.get_user_by_username(username)
+            if existing_user:
+                return self.render_login(message="Username already exists.")
+            User.create_user(username, email, full_name, password)
+            return redirect(url_for('login'))
         return self.render_login()

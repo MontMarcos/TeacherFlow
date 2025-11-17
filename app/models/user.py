@@ -1,7 +1,5 @@
-from ..db.database import gerar_conexao, fechar_conexao
-import sqlite3
+from app.db.database import gerar_conexao, fechar_conexao
 import bcrypt
-
 class User:
     def __init__(self, username, email, full_name, password_hash, ):
         self.username = username
