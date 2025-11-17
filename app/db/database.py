@@ -10,8 +10,3 @@ def fechar_conexao(conexao):
     """Fecha a conexão com o banco de dados SQLite."""
     if conexao:
         conexao.close()
-
-if __name__ == "__main__":
-    conn = gerar_conexao()
-    print("Conexão com o banco de dados estabelecida com sucesso.")
-    fechar_conexao(conn)

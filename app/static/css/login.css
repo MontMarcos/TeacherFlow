@@ -1,95 +1,165 @@
-:root {
-    /* Manter a convenção, embora não sejam estritamente necessárias para esta tela */
-    --main-color: #16267d; 
-    --text-color: #000000;
-    --background-color: #f4f4f4; /* Fundo mais suave para a tela de login */
-}
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Inter", sans-serif;
 }
 
-/* --- Estilo do Body para centralizar o formulário --- */
+/* 🎆 FUNDO COM GRADIENTE ANIMADO */
 body {
-    font-family: 'Roboto', sans-serif; 
-    background-color: var(--background-color); 
-    color: var(--text-color);
-    min-height: 100vh;
+    height: 100vh;
+    width: 100vw;
+
+    /* Gradiente inicial */
+    background: linear-gradient(-45deg, #1456ff, #182145, #2838ff, #141a2e);
+    background-size: 400% 400%;
+
+    /* Animação */
+    animation: gradientAnimation 12s ease infinite;
+
     display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centraliza verticalmente */
-    align-items: center;     /* Centraliza horizontalmente */
-    margin: 0; 
-    padding: 20px;
+    justify-content: center;
+    align-items: center;
 }
 
-/* --- Container do Formulário de Login --- */
-form {
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+/* Animação suave */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* CONTAINER CENTRAL */
+.wrapper {
+    width: 420px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CARD BASE */
+.card {
+    background: #ffffff;
+    padding: 40px 35px;
+    border-radius: 18px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
     width: 100%;
-    max-width: 400px; /* Largura máxima para a caixa de login */
-    text-align: left;
+    position: absolute;
+
+    opacity: 0;
+    transform: scale(0.9);
+    transition: 0.35s ease-in-out;
 }
 
-/* --- Título H2 --- */
-h2 {
-    font-size: 30px;
-    font-weight: 700;
-    color: var(--main-color);
-    margin-bottom: 25px;
+.card.active {
+    opacity: 1;
+    transform: scale(1);
+    z-index: 5;
+}
+
+.header {
     text-align: center;
+    margin-bottom: 25px;
 }
 
-/* --- Labels e Inputs --- */
+.header h2 {
+    font-size: 26px;
+    color: #222;
+}
+
+.header p {
+    color: #666;
+    font-size: 14px;
+}
+
 label {
-    display: block; /* Garante que o label ocupe toda a largura */
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text-color);
-    margin-bottom: 5px;
+    display: block;
     margin-top: 15px;
+    font-size: 14px;
+    color: #333;
+    font-weight: 500;
 }
 
-input[type="text"],
-input[type="password"] {
+input {
     width: 100%;
-    padding: 12px 15px;
-    margin-bottom: 10px;
-    border: 1px solid #cccccc;
-    border-radius: 6px;
-    font-size: 16px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-input[type="text"]:focus,
-input[type="password"]:focus {
-    border-color: var(--main-color);
-    box-shadow: 0 0 0 3px rgba(22, 38, 125, 0.2);
-    outline: none;
-}
-
-/* --- Botão de Submissão --- */
-input[type="submit"] {
-    width: 100%;
-    background-color: var(--main-color); 
-    color: #ffffff;
     padding: 12px;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: 700;
-    margin-top: 20px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 5px;
+    border: 1px solid #cfd3db;
+    border-radius: 10px;
+    background: #f5f7fa;
+    font-size: 15px;
+    transition: .2s;
 }
 
-input[type="submit"]:hover {
-    background-color: #0d1a64; /* Um tom mais escuro ao passar o mouse */
-    transform: translateY(-1px);
+input:focus {
+    border-color: #1456ff;
+}
+
+.btn {
+    width: 100%;
+    padding: 14px;
+    background: #1456ff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 25px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #003bff;
+}
+
+.switch {
+    text-align: center;
+    margin-top: 20px;
+    color: #333;
+}
+
+.switch a {
+    color: #1456ff;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* 📱 MEDIA QUERIES */
+@media (max-width: 480px) {
+    .wrapper {
+        width: 92%;
+    }
+
+    .card {
+        padding: 30px 25px;
+        border-radius: 12px;
+    }
+
+    .header h2 {
+        font-size: 22px;
+    }
+
+    input, .btn {
+        font-size: 14px;
+        padding: 11px;
+    }
+}
+
+@media (max-height: 600px) {
+    body {
+        align-items: flex-start;
+        padding-top: 40px;
+    }
+
+    .wrapper {
+        margin-top: 20px;
+    }
 }
