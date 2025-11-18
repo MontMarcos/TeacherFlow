@@ -2,26 +2,34 @@ from flask import Flask, session, redirect, url_for, request
 from app.controller.aplication import Aplication
 from app.models.user import User
 from app.db.database import inicializar_banco_de_dados
-import bcrypt
 import os
+from functools import wraps
+from flask_wtf.csrf import CSRFProtect
+from dotenv import load_dotenv
 
-# Inicializa BD
+load_dotenv()
+
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if not session.get("logged_in"):
+            return redirect(url_for("login"))
+        return f(*args, **kwargs)
+    return decorated_function
+
 inicializar_banco_de_dados()
 
 aplication = Aplication()
 app = Flask(__name__, template_folder='views')
 
-# SECRET KEY segura
-app.secret_key = os.urandom(32)
-
-
+csrf = CSRFProtect(app)
+app.secret_key = os.getenv("FLASK_SECRET_KEY")
 # ----------------------------------------
 # LOGIN
 # ----------------------------------------
 @app.route('/')
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    # Se já está logado → portal
     if session.get("logged_in"):
         return redirect(url_for("portal"))
 
@@ -32,7 +40,7 @@ def login():
         # Busca usuário
         user = User.get_user_by_username(username)
 
-        if user and bcrypt.checkpw(password.encode('utf-8'), user.password_hash):
+        if user and user.validate_password(password):
             # Segurança: nova sessão para evitar fixation
             session.clear()
             session['logged_in'] = True
@@ -77,31 +85,26 @@ def logout():
 # PORTAL (precisa estar logado)
 # ----------------------------------------
 @app.route('/portal')
+@login_required
 def portal():
-    if not session.get("logged_in"):
-        return redirect(url_for("login"))
-
     return aplication.render("principal")
 
 
 @app.route('/planejamento')
+@login_required
 def planejamento():
-    if not session.get("logged_in"):
-        return redirect(url_for("login"))
     return aplication.render("planejamento")
 
 
 @app.route('/gestao')
+@login_required
 def gestao():
-    if not session.get("logged_in"):
-        return redirect(url_for("login"))
     return aplication.render("gestao")
 
 
 @app.route('/ajuda')
+@login_required
 def ajuda():
-    if not session.get("logged_in"):
-        return redirect(url_for("login"))
     return aplication.render("ajuda")
 
 
