@@ -163,3 +163,37 @@ input:focus {
         margin-top: 20px;
     }
 }
+
+/* LOGO CENTRALIZADA NO TOPO */
+.logo-area {
+    text-align: center;
+    animation: fadeInLogo 0.8s ease-out;
+}
+
+.logo-area img {
+    width: 85px;   /* Ajuste ideal para ficar elegante */
+    height: auto;
+    margin-bottom: 8px;
+    filter: drop-shadow(0px 3px 6px rgba(0,0,0,0.35));
+}
+
+/* Animação suave da logo */
+@keyframes fadeInLogo {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.login-logo {
+    width: 70px; /* tamanho perfeito, pequeno e elegante */
+    height: auto;
+    margin-bottom: 25px;
+    opacity: 0.9;
+    display: block;
+    animation: fadeIn 0.6s ease-out;
+}
+
+/* animação simples, discreta */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
