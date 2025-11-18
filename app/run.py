@@ -38,6 +38,8 @@ def login():
             session['logged_in'] = True
             session['username'] = user.username
             session['user_id'] = user.id
+            session['nome'] = user.full_name.split()[0].capitalize()
+
             
             return redirect(url_for("portal"))
 
@@ -52,19 +54,14 @@ def register():
     full_name = request.form.get("full_name")
     username = request.form.get("username")
     email = request.form.get("email")
-    password = request.form.get("password")
+    password = request.form.get("password")  # <--- aqui é o CORRETO
 
-    # Validação mínima
-    if not username or not password or not email:
+    if not username or not password or not email or not full_name:
         return "Preencha tudo!"
 
-    # Criar usuário com senha já criptografada
-    created = User.create_user(username, email, full_name, password)
-
-    if not created:
-        return "Erro: usuário já existe"
 
     return redirect(url_for("login"))
+
 
 
 # ----------------------------------------
@@ -83,6 +80,7 @@ def logout():
 def portal():
     if not session.get("logged_in"):
         return redirect(url_for("login"))
+
     return aplication.render("principal")
 
 

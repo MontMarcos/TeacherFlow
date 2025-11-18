@@ -11,38 +11,53 @@ class Aplication:
             'ajuda': self.render_ajuda
         }
 
-    def render(self, page):
-        content_function = self.pages.get(page, self.render_principal) 
-        return content_function()
+    def render(self, page, **kwargs):
+        content_function = self.pages.get(page, self.render_principal)
+        return content_function(**kwargs)
     
-    def render_principal(self):
+    def render_principal(self, **kwargs):
         if 'logged_in' not in session:
             return redirect(url_for('login'))
-        return render_template('inicio.html', name=session.get('name')) 
+        
+        return render_template('inicio.html', name=session.get('nome'))
+
     
     def render_login(self, message=None):
         return render_template('login.html', message=message)
     
-    def render_planejamento(self):
+    def render_planejamento(self, **kwargs):
         return render_template('planejamento.html')
     
-    def render_gestao(self):
+    def render_gestao(self, **kwargs):
         return render_template('gestao.html')
     
-    def render_ajuda(self):
+    def render_ajuda(self, **kwargs):
         return render_template('ajuda.html')
 
     def handle_login(self):
+
         if request.method == 'POST':
             username = request.form.get('username')
             password = request.form.get('password')
+
             user = User.get_user_by_username(username)
+
             if user and user.validate_password(password):
                 session['logged_in'] = True
-                session['name'] = user.full_name
+                
+                # ARMAZENA SOMENTE O PRIMEIRO NOME
+                session['nome'] = user.full_name.split()[0].capitalize()
+                print("USER:", user)
+
+            if user:
+                print("FULL NAME NO BANCO:", user.full_name)
+                print("SPLIT:", user.full_name.split() if user.full_name else "NADA")
+
+                
                 return redirect(url_for('principal'))
             else:
                 return self.render_login(message="Invalid username or password.")
+        
         return self.render_login()
     
     def handle_logout(self):
@@ -54,10 +69,13 @@ class Aplication:
             username = request.form.get('username')
             email = request.form.get('email')
             full_name = request.form.get('full_name')
-            password = request.form.get('password_hash')
+            password = request.form.get('password')
+
             existing_user = User.get_user_by_username(username)
             if existing_user:
                 return self.render_login(message="Username already exists.")
+
             User.create_user(username, email, full_name, password)
             return redirect(url_for('login'))
+
         return self.render_login()
