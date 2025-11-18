@@ -6,15 +6,10 @@ import os
 import bcrypt
 from functools import wraps
 from dotenv import load_dotenv
-from flask_talisman import Talisman 
-from flask_limiter import Limiter
-from flask_limiter.util import get_remote_address
 
 load_dotenv()
 
-# ----------------------------------------
 # DECORADOR DE SEGURANÇA (login_required)
-# ----------------------------------------
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -82,6 +77,8 @@ def logout():
     session.clear()
     return redirect(url_for("login"))
 
+#---------------------------------------------
+
 @app.route('/portal')
 @login_required
 def portal():
@@ -101,6 +98,7 @@ def gestao():
 @login_required
 def ajuda():
     return aplication.render("ajuda")
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)

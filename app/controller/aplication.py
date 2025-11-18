@@ -21,7 +21,6 @@ class Aplication:
         
         return render_template('inicio.html', name=session.get('nome'))
 
-    
     def render_login(self, message=None):
         return render_template('login.html', message=message)
     
