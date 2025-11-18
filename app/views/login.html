@@ -9,6 +9,7 @@
 <body>
 
 <div class="wrapper">
+    <!-- CARD LOGIN -->
     <div class="card active" id="card-login">
         <div class="logo-area">
             <img src="../static/img/Logo.png.png" class="logo">
@@ -19,7 +20,7 @@
         </div>
 
         <form action="/login" method="POST">
-            {{ csrf_token() }}
+           
             <label>Usuário</label>
             <input type="text" name="username" required>
 
