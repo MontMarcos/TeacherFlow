@@ -23,16 +23,16 @@
             </div>
             <nav class="sidebar-nav">
                 <div class="nav-group-top"> 
-                    <a href="#" class="nav-item"><i class="fas fa-home"></i><span></span></a>
-                    <a href="#" class="nav-item"><i class="fas fa-book"></i><span></span></a>
-                    <a href="#" class="nav-item"><i class="fas fa-user-check"></i><span></span></a>
+                    <a href="{{ url_for('portal') }}" class="nav-item"><i class="fas fa-home"></i><span></span></a>
+                    <a href="{{ url_for('planejamento') }}" class="nav-item"><i class="fas fa-book"></i><span></span></a>
+                    <a href="{{ url_for('gestao') }}" class="nav-item"><i class="fas fa-user-check"></i><span></span></a>
                 </div>
 
                 <div class="nav-group-bottom-2"> 
                     <hr class="sidebar-divider-2">
-                    <a href="#" class="nav-item-2"><i class="fas fa-question-circle"></i></a>
+                    <a href="{{ url_for('ajuda') }}" class="nav-item-2"><i class="fas fa-question-circle"></i></a>
                     <a href="#" class="nav-item-2" onclick="openSettings()"><i class="fas fa-cog"></i></a>
-                    <a href="/logout" class="nav-item-2 logout"><i class="fas fa-sign-out-alt"></i></a>
+                    <a href="{{ url_for('logout') }}" class="nav-item-2 logout"><i class="fas fa-sign-out-alt"></i></a>
                 </div>
             </nav>
         </nav>
