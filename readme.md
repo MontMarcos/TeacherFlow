@@ -153,20 +153,6 @@ A aplicação estará disponível em `http://localhost:8080`
 
 Contribuições são bem-vindas! Este projeto está em fase inicial de desenvolvimento.
 
-### Como Contribuir
-
-1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
-3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
-4. Push para a branch (`git push origin feature/AmazingFeature`)
-5. Abra um Pull Request
-
-### Padrões de Código
-
-- **Python:** PEP 8
-- **Commits:** [Conventional Commits](https://www.conventionalcommits.org/)
-- **Testes:** Cobertura mínima de 80%
-
 ---
 
 ## 📝 Licença
