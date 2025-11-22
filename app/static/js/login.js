@@ -13,11 +13,3 @@ document.getElementById("swap-to-login").onclick = () => {
     loginCard.classList.add("active");
 };
 
-// ---- ALERTA DE ERRO ----
-window.addEventListener("DOMContentLoaded", () => {
-    const params = new URLSearchParams(window.location.search);
-
-    if (params.get("error") === "1") {
-        alert("Usuário ou senha incorretos!");
-    }
-});
